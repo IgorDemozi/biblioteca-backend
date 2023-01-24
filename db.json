@@ -1,0 +1,519 @@
+{
+	"login": [
+		{
+			"email": "admin@admin.com.br",
+			"password": "admin123"
+		},
+		{
+			"email": "gustavo@gmail.com",
+			"password": "gustavokunde"
+		},
+		{
+			"email": "gx2tecnologia@gx2.com.br",
+			"password": "gx2@123"
+		}
+	],
+	"books": [
+		{
+			"id": "0",
+			"title": "A revolução dos bichos",
+			"author": "George Orwell",
+			"genre": "Ficção Cientifica",
+			"status": {
+				"isRented": false,
+				"isActive": false,
+				"description": "asdasdasdasdasda"
+			},
+			"image": "",
+			"systemEntryDate": "04/12/2019",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": [
+				{
+					"studentName": "roger",
+					"class": "t564",
+					"withdrawalDate": "12/08/2022",
+					"deliveryDate": "01/09/2022"
+				}
+			]
+		},
+		{
+			"title": "aaaa",
+			"author": "ccccc",
+			"genre": "Horror",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "14/08/2022",
+			"synopsis": "xxxxx",
+			"rentHistory": [],
+			"id": 1
+		},
+		{
+			"title": "aaaaaa",
+			"author": "dddddd",
+			"genre": "Fantasia",
+			"status": {
+				"isRented": false,
+				"isActive": false,
+				"description": "paokspokapsokpasko"
+			},
+			"image": "",
+			"systemEntryDate": "14/08/2022",
+			"synopsis": "bbbbb",
+			"rentHistory": [],
+			"id": 2
+		},
+		{
+			"id": 3,
+			"title": "Ansiedade: Como enfrentar o mal do século",
+			"author": "Augusto Cury",
+			"genre": "Autoajuda",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "13/02/2017",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": []
+		},
+		{
+			"id": 4,
+			"title": "Gatilhos Mentais",
+			"author": "Gustavo Ferreira",
+			"genre": "Web Marketing",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "29/12/2021",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": []
+		},
+		{
+			"id": 5,
+			"title": "Hereges de Duna",
+			"author": "Frank Herbert",
+			"genre": "Ficção Cientifica",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "02/01/2020",
+			"synopsis": "CACILDS",
+			"rentHistory": []
+		},
+		{
+			"id": 6,
+			"title": "Livro de Referência de Digimons",
+			"author": "Bandai",
+			"genre": "Fantasia",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "10/08/2022",
+			"synopsis": "Um livro contendo informações sobre diversos digimons",
+			"rentHistory": [
+				{
+					"studentName": "raimundo",
+					"class": "t343",
+					"withdrawalDate": "12/08/2022",
+					"deliveryDate": "30/08/2022"
+				},
+				{
+					"studentName": "igor",
+					"class": "T79",
+					"withdrawalDate": "14/08/2022",
+					"deliveryDate": "01/09/2022"
+				}
+			]
+		},
+		{
+			"id": 7,
+			"title": "Mais Esperto que o Diabo",
+			"author": "Napoleon Hill",
+			"genre": "Autoajuda",
+			"status": {
+				"isRented": false,
+				"isActive": false,
+				"description": "desativado porque estragou"
+			},
+			"image": "",
+			"systemEntryDate": "02/01/2020",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": []
+		},
+		{
+			"id": 8,
+			"title": "Mindset",
+			"author": "Carol S. Dweck",
+			"genre": "Finanças",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "22/09/2020",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": []
+		},
+		{
+			"id": 9,
+			"title": "O Código Da Vinci",
+			"author": "Dan Brown",
+			"genre": "Suspense",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "13/08/2022",
+			"synopsis": "sinopse",
+			"rentHistory": [
+				{
+					"studentName": "luizinho",
+					"class": "456",
+					"withdrawalDate": "23/11/2022",
+					"deliveryDate": "09/12/2022"
+				}
+			]
+		},
+		{
+			"id": 10,
+			"title": "O Escaravelho Dourado",
+			"author": "Edgar Allan Poe",
+			"genre": "Suspense",
+			"status": {
+				"isRented": false,
+				"isActive": false,
+				"description": "o escaravelho comeu o livro outra vez (sim, é verdade, por mais incrível que possa parecer)"
+			},
+			"image": "",
+			"systemEntryDate": "13/08/2022",
+			"synopsis": "sinopse",
+			"rentHistory": []
+		},
+		{
+			"title": "O homem mais rico da Babilônia",
+			"author": "George S Clason",
+			"genre": "Historia",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "06/12/2004",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": [
+				{
+					"studentName": "alex",
+					"class": "t58",
+					"withdrawalDate": "12/08/2022",
+					"deliveryDate": "21/08/2022"
+				},
+				{
+					"studentName": "alex",
+					"class": "t58",
+					"withdrawalDate": "12/08/2022",
+					"deliveryDate": "21/08/2022"
+				}
+			],
+			"id": 11
+		},
+		{
+			"title": "O Milagre da Manhã",
+			"author": "Hal Elrod",
+			"genre": "Autoajuda",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "11/06/2017",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": [],
+			"id": 12
+		},
+		{
+			"title": "O Poder da Autorresponsabilidade",
+			"author": "Paulo Vieira",
+			"genre": "Autoajuda",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "14/07/2020",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": [],
+			"id": 13
+		},
+		{
+			"title": "Os segredos da mente milionária",
+			"author": "T. Harv Eker",
+			"genre": "Finanças",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "20/01/2022",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": [],
+			"id": 14
+		},
+		{
+			"id": 15,
+			"title": "Pai Rico, Pai Pobre",
+			"author": "Robert T. Kiyosaki",
+			"genre": "Finanças",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "02/04/2018",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": [
+				{
+					"studentName": "denis",
+					"class": "t69",
+					"withdrawalDate": "12/08/2022",
+					"deliveryDate": "24/08/2022"
+				}
+			]
+		},
+		{
+			"title": "Quem pensa enriquece",
+			"author": "Napoleon Hill",
+			"genre": "Finanças",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "12/06/2019",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": [],
+			"id": 16
+		},
+		{
+			"title": "Sapiens",
+			"author": "Yuval Noah Harari",
+			"genre": "Historia",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "01/07/2021",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": [],
+			"id": 17
+		},
+		{
+			"id": 18,
+			"title": "TAZ",
+			"author": "TAZ",
+			"genre": "Ação e Aventura",
+			"status": {
+				"isRented": true,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "11/08/2022",
+			"synopsis": "ABLABLABLEBLUBLEBLELBAEUBLAUELBUALEUELBUAEBULBUELBULAEBLUEBLUEBLUALEUBLBUAELUAUEBLULU",
+			"rentHistory": [
+				{
+					"studentName": "taz",
+					"class": "t47",
+					"withdrawalDate": "12/08/2022",
+					"deliveryDate": "29/08/2022"
+				},
+				{
+					"studentName": "diego",
+					"class": "64",
+					"withdrawalDate": "12/01/2023",
+					"deliveryDate": "26/01/2023"
+				}
+			]
+		},
+		{
+			"id": 19,
+			"title": "TAZ 2",
+			"author": "Multiversus",
+			"genre": "Romance",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "04/08/2022",
+			"synopsis": "Após ter seu tornado nerfado, Taz retorna ao campo de batalha buscando provar o seu valor mais uma vez.",
+			"rentHistory": [
+				{
+					"studentName": "claudio",
+					"class": "T777",
+					"withdrawalDate": "12/08/2022",
+					"deliveryDate": "28/08/2022"
+				},
+				{
+					"studentName": "claudio",
+					"class": "t777",
+					"withdrawalDate": "12/08/2022",
+					"deliveryDate": "21/08/2022"
+				}
+			]
+		},
+		{
+			"title": "Trabalhe 4 horas por semana",
+			"author": "Timothy Ferriss",
+			"genre": "Autoajuda",
+			"status": {
+				"isRented": true,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "12/04/2019",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": [
+				{
+					"studentName": "igor",
+					"class": "t54",
+					"withdrawalDate": "12/08/2022",
+					"deliveryDate": "28/08/2022"
+				},
+				{
+					"studentName": "barreto",
+					"class": "t777",
+					"withdrawalDate": "12/08/2022",
+					"deliveryDate": "30/08/2022"
+				},
+				{
+					"studentName": "laura",
+					"class": "T58",
+					"withdrawalDate": "13/08/2022",
+					"deliveryDate": "04/09/2022"
+				},
+				{
+					"studentName": "luigi",
+					"class": "64",
+					"withdrawalDate": "30/12/2022",
+					"deliveryDate": "13/01/2023"
+				},
+				{
+					"studentName": "diego",
+					"class": "562",
+					"withdrawalDate": "17/01/2023",
+					"deliveryDate": "31/01/2023"
+				}
+			],
+			"id": 20
+		},
+		{
+			"title": "Trilogia da Fundação - Deluxe",
+			"author": "Isaac Asimov",
+			"genre": "Ficção Cientifica",
+			"status": {
+				"isRented": true,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "08/04/2019",
+			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+			"rentHistory": [
+				{
+					"studentName": "carlos",
+					"class": "2",
+					"withdrawalDate": "24/11/2022",
+					"deliveryDate": "09/12/2022"
+				}
+			],
+			"id": 21
+		},
+		{
+			"id": 22,
+			"title": "Pizza de Calabresa",
+			"author": "Egito",
+			"genre": "Historia",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "30/12/2022",
+			"synopsis": "É uma delícia",
+			"rentHistory": []
+		},
+		{
+			"id": 23,
+			"title": "Bloodborne: the Old Hunters",
+			"author": "FROM Software",
+			"genre": "Horror",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "12/01/2023",
+			"synopsis": "DLC de bloodborne",
+			"rentHistory": []
+		},
+		{
+			"id": 24,
+			"title": "Bloodborne Kart",
+			"author": "FAN Software",
+			"genre": "Fantasia",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "12/01/2023",
+			"synopsis": "When the joke goes too far, it becomes reality",
+			"rentHistory": []
+		},
+		{
+			"title": "banana",
+			"author": "bananeira",
+			"genre": "Culinária",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "",
+			"systemEntryDate": "12/01/2023",
+			"synopsis": "fruta",
+			"rentHistory": [],
+			"id": "8d739632-3d05-4282-b431-c2dffb6edcb3"
+		}
+	]
+}
