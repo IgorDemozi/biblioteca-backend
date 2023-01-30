@@ -4,50 +4,28 @@ import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
 import path from 'path';
 import cors from 'cors';
+import { Livro, RentHistory } from './types';
+import multer from 'multer';
 
 const dirname = path.dirname('./Backend');
+const storage = multer.diskStorage({
+   destination: (req: any, file: any, cb: any) => {
+      cb(null, path.join(dirname, './upload/'));
+   },
+   filename: (req: any, file: any, cb: any) => {
+      cb(null, `${Date.now()}-${file.originalname}`);
+   }
+});
+
+const upload = multer({ storage: storage });
 const port: number = 3000;
 const app = express();
+app.use('./upload', express.static('upload'));
+app.use(cors());
 app.use(express.json());
 
-const corsOptions = {
-   origin: '*',
-   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-   credentials: true,
-   preflightContinue: false,
-   optionSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
-
-type Livro = {
-   id: string;
-   title: string;
-   author: string;
-   genre: string;
-   status: Status;
-   image: string;
-   systemEntryDate: string;
-   synopsis: string;
-   rentHistory: RentHistory[];
-}
-
-type RentHistory = {
-   studentName: string;
-   class: string;
-   title?: string;
-   withdrawalDate: string;
-   deliveryDate: string
-}
-
-type Status = {
-   isRented: boolean;
-   isActive: boolean;
-   description: string;
-}
-
 //autenticar usuario
-app.post('/login', cors(corsOptions), (request: any, response: any) => {
+app.post('/login', (request: any, response: any) => {
    const { email, password }: { email: string, password: string } = request.body;
    const loginIndex = db.login.findIndex(item =>
       item.email === email && item.password === password
@@ -60,9 +38,29 @@ app.post('/login', cors(corsOptions), (request: any, response: any) => {
    }
 })
 
+app.get('/upload/:filename', (request: any, response: any) => {
+   return response.sendFile(`./upload/${request.params.filename}`, { root: dirname });
+})
+
 //listar todos os livros
-app.get('/books', function (request: any, response: any) {
+app.get('/books', (request: any, response: any) => {
+   db.books.sort((a, b) => a.title.localeCompare(b.title));
    return response.status(200).json(db.books);
+})
+
+//listar todos os generos
+app.get('/books/generos', (request: any, response: any) => {
+   let generos: string[] = [];
+
+   db.books.forEach(item => {
+      if (generos.includes(item.genre)) {
+         return null
+      } else {
+         generos.push(item.genre);
+      }
+   });
+   generos.sort((a, b) => a.localeCompare(b));
+   return response.status(200).json(generos);
 })
 
 //listar um livro
@@ -78,9 +76,11 @@ app.get('/books/:id', function (request: any, response: any) {
 })
 
 //cadastrar novo livro
-app.post('/books', function (request: any, response: any) {
-   let novoLivro: Livro = request.body;
+app.post('/books', upload.single('image'), (request: any, response: any) => {
+   const img = request.file;
+   let novoLivro: Livro = JSON.parse(request.body.novoLivro);
    novoLivro.id = uuidv4();
+   novoLivro.image = img ? img.filename : novoLivro.image;
 
    db.books.push(novoLivro);
    fs.writeFileSync(path.join(dirname, "./db.json"), JSON.stringify(db, null, '\t'));
@@ -89,11 +89,12 @@ app.post('/books', function (request: any, response: any) {
 })
 
 //editar livro
-app.patch('/books/:id', function (request: any, response: any) {
+app.patch('/books/:id', upload.single('image'), (request: any, response: any) => {
    const { id } = request.params;
-   const { title, author, genre, image, systemEntryDate, synopsis }: Livro = request.body;
+   const img = request.file;
+   const { title, author, genre, image, systemEntryDate, synopsis }: Livro = JSON.parse(request.body.newInfo);
 
-   const livroIndex = db.books.findIndex(item => item.id === id);
+   const livroIndex = db.books.findIndex(item => item.id.toString() === id);
 
    if (livroIndex < 0) {
       return response.status(404).json({ error: 'Livro não encontrado' })
@@ -102,7 +103,7 @@ app.patch('/books/:id', function (request: any, response: any) {
    db.books[livroIndex].title = title;
    db.books[livroIndex].author = author;
    db.books[livroIndex].genre = genre;
-   db.books[livroIndex].image = image;
+   db.books[livroIndex].image = img ? img.filename : image;
    db.books[livroIndex].systemEntryDate = systemEntryDate;
    db.books[livroIndex].synopsis = synopsis;
 
@@ -135,7 +136,7 @@ app.get('/emprestimos/:id', function (request: any, response: any) {
 })
 
 //emprestar livro
-app.patch('/biblioteca/emprestar/:id', function (request: any, response: any, next: any) {
+app.patch('/biblioteca/emprestar/:id', (request: any, response: any, next: any) => {
    const { id } = request.params;
    const livroIndex = db.books.findIndex(item => item.id.toString() === id);
    const novoEmprestimo: RentHistory = request.body;
@@ -153,7 +154,7 @@ app.patch('/biblioteca/emprestar/:id', function (request: any, response: any, ne
 })
 
 //devolver livro
-app.patch('/biblioteca/devolver/:id', function (request: any, response: any, next: any) {
+app.post('/biblioteca/devolver/:id', function (request: any, response: any, next: any) {
    const { id } = request.params;
    const livroIndex = db.books.findIndex(item => item.id.toString() === id);
 
@@ -162,7 +163,6 @@ app.patch('/biblioteca/devolver/:id', function (request: any, response: any, nex
    }
 
    db.books[livroIndex].status.isRented = false;
-
    fs.writeFileSync(path.join(dirname, "./db.json"), JSON.stringify(db, null, '\t'));
 
    return response.status(200).json(db.books[livroIndex]);

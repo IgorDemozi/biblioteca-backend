@@ -4,3 +4,4 @@ declare module 'express';
 declare module 'uuid';
 declare module 'cors';
 declare module '*.json';
+declare module 'multer';
