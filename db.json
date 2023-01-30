@@ -45,7 +45,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675080136955-LetterA.svg.png",
 			"systemEntryDate": "14/08/2022",
 			"synopsis": "xxxxx",
 			"rentHistory": [],
@@ -57,10 +57,10 @@
 			"genre": "Fantasia",
 			"status": {
 				"isRented": false,
-				"isActive": true,
-				"description": ""
+				"isActive": false,
+				"description": "bbb bbb bbb"
 			},
-			"image": "",
+			"image": "1675080169457-LetterA.svg.png",
 			"systemEntryDate": "14/08/2022",
 			"synopsis": "bbbbb",
 			"rentHistory": [],
@@ -149,7 +149,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675080264907-bloodborne-kart-2655663.webp",
 			"systemEntryDate": "12/01/2023",
 			"synopsis": "When the joke goes too far, it becomes reality",
 			"rentHistory": []
@@ -164,7 +164,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675080487915-PYBKeRa0XQYnX6IL4TyQwAdjsG1yIiHr.jfif",
 			"systemEntryDate": "12/01/2023",
 			"synopsis": "DLC de bloodborne",
 			"rentHistory": []
@@ -179,7 +179,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675079340904-livro11.png",
 			"systemEntryDate": "29/12/2021",
 			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. A nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
 			"rentHistory": []
@@ -194,7 +194,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675079371765-livro02.png",
 			"systemEntryDate": "02/01/2020",
 			"synopsis": "CACILDS",
 			"rentHistory": []
@@ -209,7 +209,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675080723448-Digitamamon_b.webp",
 			"systemEntryDate": "10/08/2022",
 			"synopsis": "Um livro contendo informações sobre diversos digimons",
 			"rentHistory": [
@@ -237,7 +237,7 @@
 				"isActive": false,
 				"description": "desativado porque estragou"
 			},
-			"image": "",
+			"image": "1675079483879-livro01.png",
 			"systemEntryDate": "02/01/2020",
 			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. A nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
 			"rentHistory": []
@@ -252,7 +252,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675079547928-livro15.png",
 			"systemEntryDate": "22/09/2020",
 			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. A nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
 			"rentHistory": []
@@ -267,7 +267,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675080901996-91QSDmqQdaL.jpg",
 			"systemEntryDate": "13/08/2022",
 			"synopsis": "sinopse",
 			"rentHistory": [
@@ -281,7 +281,7 @@
 		},
 		{
 			"id": 10,
-			"title": "O Escaravelho Dourado",
+			"title": "O Escaravelho de Ouro",
 			"author": "Edgar Allan Poe",
 			"genre": "Suspense",
 			"status": {
@@ -289,7 +289,7 @@
 				"isActive": false,
 				"description": "o escaravelho comeu o livro outra vez (sim, é verdade, por mais incrível que possa parecer)"
 			},
-			"image": "",
+			"image": "1675081054665-41NaHc+ZT1L.jpg",
 			"systemEntryDate": "13/08/2022",
 			"synopsis": "sinopse",
 			"rentHistory": []
@@ -303,7 +303,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675079615843-livro04.png",
 			"systemEntryDate": "06/12/2004",
 			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. A nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
 			"rentHistory": [
@@ -346,11 +346,33 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675079658262-livro12.png",
 			"systemEntryDate": "14/07/2020",
 			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. A nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
 			"rentHistory": [],
 			"id": 13
+		},
+		{
+			"title": "O Retrato de Dorian Gray",
+			"author": "Oscar Wilde",
+			"genre": "Fantasia",
+			"status": {
+				"isRented": true,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "1675082068319-0527_https-www-escala-com-br-o-retrato-de-dorian-gray-oscar-wilde-p1638-_l1_637952229774386003.jpg",
+			"systemEntryDate": "30/01/2023",
+			"synopsis": "Dorian Gray, um jovem da alta sociedade, faz um pacto demoníaco para ter a juventude eterna enquanto o quadro com seu retrato é que envelhece. Com o tempo, sua vida de abusos transforma a imagem num monstro.",
+			"rentHistory": [
+				{
+					"studentName": "keli",
+					"class": "562",
+					"withdrawalDate": "30/01/2023",
+					"deliveryDate": "11/02/2023"
+				}
+			],
+			"id": "fb29991f-b592-4e4b-83fd-e6627178e963"
 		},
 		{
 			"title": "Os segredos da mente milionária",
@@ -361,7 +383,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675079716722-livro08.png",
 			"systemEntryDate": "20/01/2022",
 			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. A nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
 			"rentHistory": [],
@@ -377,7 +399,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675079790283-livro05.png",
 			"systemEntryDate": "02/04/2018",
 			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. A nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
 			"rentHistory": [
@@ -399,7 +421,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675081360322-800_crop_602e63a6069f0_602e63961224e.webp",
 			"systemEntryDate": "30/12/2022",
 			"synopsis": "É uma delícia",
 			"rentHistory": []
@@ -413,7 +435,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675079879060-livro09.png",
 			"systemEntryDate": "12/06/2019",
 			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. A nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
 			"rentHistory": [],
@@ -428,7 +450,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675079911647-livro07.png",
 			"systemEntryDate": "01/07/2021",
 			"synopsis": "Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo.Posuere libero varius. A nisl ut ante blandit hendrerit. Aenean sit amet nisi.Quem num gosta di mé, boa gentis num é.Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
 			"rentHistory": [],
@@ -444,7 +466,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675081439822-Taz.webp",
 			"systemEntryDate": "11/08/2022",
 			"synopsis": "ABLABLABLEBLUBLEBLELBAEUBLAUELBUALEUELBUAEBULBUELBULAEBLUEBLUEBLUALEUBLBUAELUAUEBLULU",
 			"rentHistory": [
@@ -472,7 +494,7 @@
 				"isActive": true,
 				"description": ""
 			},
-			"image": "",
+			"image": "1675081466583-Taz.webp",
 			"systemEntryDate": "04/08/2022",
 			"synopsis": "Após ter seu tornado nerfado, Taz retorna ao campo de batalha buscando provar o seu valor mais uma vez.",
 			"rentHistory": [
