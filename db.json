@@ -57,8 +57,8 @@
 			"genre": "Fantasia",
 			"status": {
 				"isRented": false,
-				"isActive": false,
-				"description": "bbb bbb bbb"
+				"isActive": true,
+				"description": ""
 			},
 			"image": "1675080169457-LetterA.svg.png",
 			"systemEntryDate": "14/08/2022",
@@ -357,7 +357,7 @@
 			"author": "Oscar Wilde",
 			"genre": "Fantasia",
 			"status": {
-				"isRented": true,
+				"isRented": false,
 				"isActive": true,
 				"description": ""
 			},

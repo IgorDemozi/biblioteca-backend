@@ -1,6 +1,6 @@
 import express from 'express';
 import db from '../db.json' assert { type: "json" };
-import { v4 as uuidv4 } from 'uuid';
+import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import cors from 'cors';
@@ -79,7 +79,7 @@ app.get('/books/:id', function (request: any, response: any) {
 app.post('/books', upload.single('image'), (request: any, response: any) => {
    const img = request.file;
    let novoLivro: Livro = JSON.parse(request.body.novoLivro);
-   novoLivro.id = uuidv4();
+   novoLivro.id = crypto.randomUUID();
    novoLivro.image = img ? img.filename : novoLivro.image;
 
    db.books.push(novoLivro);
@@ -113,7 +113,7 @@ app.patch('/books/:id', upload.single('image'), (request: any, response: any) =>
 })
 
 //listar todos os historicos
-app.get('/emprestimos', function (request: any, response: any) {
+app.get('/emprestimos', (request: any, response: any) => {
    let historicos: RentHistory[] = [];
 
    db.books.forEach(livro => {
@@ -154,7 +154,7 @@ app.patch('/biblioteca/emprestar/:id', (request: any, response: any, next: any) 
 })
 
 //devolver livro
-app.post('/biblioteca/devolver/:id', function (request: any, response: any, next: any) {
+app.patch('/biblioteca/devolver/:id', (request: any, response: any, next: any) => {
    const { id } = request.params;
    const livroIndex = db.books.findIndex(item => item.id.toString() === id);
 

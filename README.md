@@ -1,33 +1,44 @@
-# Library
+# Library (backend)
 
-Library é um projeto criado para fins de estudo e familiarização com algumas bibliotecas.
+Este é o backend do projeto Library, onde são feitas as requisições e validações necessárias do projeto.
 
-## Tecnoligias usadas no projeto:
+## Tecnologias usadas no projeto:
 
-- TypeScript
-- [Json-Server](https://www.npmjs.com/package/json-server) - usado para simular um servidor usando dados de um arquivo JSON, possibilitando fazer requisições
-- [Material-UI](https://mui.com/) - biblioteca usada para facilitar a criação de elementos na tela
-- [Axios](https://axios-http.com/ptbr/docs/intro) - biblioteca usada para fazer requisições para o JSON Server
-- [Formik](https://formik.org/) e [Yup](https://www.npmjs.com/package/yup) - usados para criação e validação de formulários
-- [Styled-Components](https://styled-components.com/) - biblioteca usada para estilização de componentes
+- TypeScript - usado para fazer a tipagem do código escrito em JavaScript, o que dá diversas vantagens ao escrever o código.
+- Node - é um ambiente em tempo de execução open-source (código aberto) e multiplataforma que permite aos desenvolvedores criarem todo tipo de aplicativos e ferramentas do lado servidor (backend) em JavaScript.
+- Express - um framework Node que permite a gerenciação de requisições HTTP em diferentes URLs.
+- Cors - é um mecanismo usado para adicionar cabeçalhos HTTP que informam aos navegadores para permitir que uma aplicação Web seja executada em uma origem e acesse recursos de outra origem diferente.
+- Fs - permite a interação com o sistema de arquivos, permitindo criar e alterar arquivos.
+- Multer - é um middleware que internamente utiliza a lib busboy para lidar com formulários multipart/form-data. Usado para interceptar arquivos mandados em requisições para que o fs possa salvá-los.
+- Nodemon - é uma biblioteca que ajuda no desenvolvimento de sistemas com o Node reiniciando automaticamente o servidor ao detectar mudanças no código.
 
 ## Como usar
 
-Inicie o servidor
+Instalando as dependências do projeto.
 
 ```sh
-npm run server
+npm i
 ```
 
-Após o servidor estar inicializado, execute a aplicação
+Iniciando o servidor
 
 ```sh
 npm start
 ```
 
-Se tudo der certo, você estará da tela de login
+O servidor irá rodar no port 3000 (http://localhost:3000/)
 
-Ao logar você terá acesso a toda aplicação. Você pode logar com o seguinte usuário:
+## Rotas
 
-- email: admin@admin.com.br
-- senha: admin123
+POST "/login" - autenticar usuario
+GET "/books" - listar todos os livros
+GET "/books/generos" - listar todos os generos
+GET "/books/:id" - listar um livro
+POST "/books" - cadastrar novo livro
+PATCH "/books/:id" - editar livro
+GET "/emprestimos" - listar todos os historicos de empréstimos
+GET "/emprestimos/:id" - listar o historico de um livro
+PATCH "/biblioteca/emprestar/:id" - emprestar livro
+PATCH "/biblioteca/devolver/:id" - devolver livro
+PATCH "/biblioteca/desativar/:id" - desativar livro
+PATCH "/biblioteca/ativar/:id" - ativar livro
