@@ -30,15 +30,15 @@ O servidor irá rodar no port 3000 (http://localhost:3000/)
 
 ## Rotas
 
-POST "/login" - autenticar usuario
-GET "/books" - listar todos os livros
-GET "/books/generos" - listar todos os generos
-GET "/books/:id" - listar um livro
-POST "/books" - cadastrar novo livro
-PATCH "/books/:id" - editar livro
-GET "/emprestimos" - listar todos os historicos de empréstimos
-GET "/emprestimos/:id" - listar o historico de um livro
-PATCH "/biblioteca/emprestar/:id" - emprestar livro
-PATCH "/biblioteca/devolver/:id" - devolver livro
-PATCH "/biblioteca/desativar/:id" - desativar livro
+POST "/login" - autenticar usuario <br>
+GET "/books" - listar todos os livros <br>
+GET "/books/generos" - listar todos os generos <br>
+GET "/books/:id" - listar um livro <br>
+POST "/books" - cadastrar novo livro <br>
+PATCH "/books/:id" - editar livro<br>
+GET "/emprestimos" - listar todos os historicos de empréstimos <br>
+GET "/emprestimos/:id" - listar o historico de um livro <br>
+PATCH "/biblioteca/emprestar/:id" - emprestar livro <br>
+PATCH "/biblioteca/devolver/:id" - devolver livro <br>
+PATCH "/biblioteca/desativar/:id" - desativar livro <br>
 PATCH "/biblioteca/ativar/:id" - ativar livro
