@@ -1,86 +1,115 @@
 import express from 'express';
-import db from '../db.json' assert { type: "json" };
 import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import cors from 'cors';
-import { Livro, RentHistory } from './types';
 import multer from 'multer';
+import z from 'zod';
+
+import db from '../db.json' assert { type: "json" };
+import { Livro, RentHistory } from './types';
 
 const dirname = path.dirname('./Backend');
 const storage = multer.diskStorage({
-   destination: (req: any, file: any, cb: any) => {
+   destination: (req, file, cb) => {
       cb(null, path.join(dirname, './upload/'));
    },
-   filename: (req: any, file: any, cb: any) => {
+   filename: (req, file, cb) => {
       cb(null, `${Date.now()}-${file.originalname}`);
    }
 });
 
 const upload = multer({ storage: storage });
-const port: number = 3000;
+const port = 3000;
 const app = express();
 app.use('./upload', express.static('upload'));
 app.use(cors());
 app.use(express.json());
 
 //autenticar usuario
-app.post('/login', (request: any, response: any) => {
+app.post('/login', (request, response) => {
    const { email, password }: { email: string, password: string } = request.body;
-   const loginIndex = db.login.findIndex(item =>
+
+   const usuario = z.object({
+      email: z.string().email().min(1),
+      password: z.string().min(1)
+   })
+   const validacao = usuario.parse({
+      email: email,
+      password: password
+   })
+
+   const login = db.login.find(item =>
       item.email === email && item.password === password
    );
 
-   if (loginIndex < 0) {
+   if (!login) {
       return response.status(404).json({ error: 'Usuário ou senha inválidos' });
-   } else {
-      return response.status(200).json({ auth: true });
    }
+   return response.json({ auth: true });
 })
 
-app.get('/upload/:filename', (request: any, response: any) => {
+//mandar imagem
+app.get('/upload/:filename', (request, response) => {
    return response.sendFile(`./upload/${request.params.filename}`, { root: dirname });
 })
 
 //listar todos os livros
-app.get('/books', (request: any, response: any) => {
+app.get('/books', (request, response) => {
    db.books.sort((a, b) => a.title.localeCompare(b.title));
-   return response.status(200).json(db.books);
+   return response.json(db.books);
 })
 
 //listar todos os generos
-app.get('/books/generos', (request: any, response: any) => {
-   let generos: string[] = [];
-
-   db.books.forEach(item => {
-      if (generos.includes(item.genre)) {
-         return null
-      } else {
-         generos.push(item.genre);
-      }
-   });
-   generos.sort((a, b) => a.localeCompare(b));
-   return response.status(200).json(generos);
+app.get('/books/generos', (request, response) => {
+   let generos: string[] = Array.from(new Set(db.books.map(book => book.genre)))
+      .sort((a, b) => a.localeCompare(b))
+   return response.json(generos);
 })
 
 //listar um livro
-app.get('/books/:id', function (request: any, response: any) {
+app.get('/books/:id', (request, response) => {
    const { id } = request.params;
-   const livroIndex = db.books.findIndex(item => item.id.toString() === id);
+   const livro = db.books.find(item => item.id.toString() === id);
 
-   if (livroIndex < 0) {
+   if (!livro) {
       return response.status(404).json({ error: 'Livro não encontrado' })
    }
-
-   return response.status(200).json(db.books[livroIndex]);
+   return response.json(livro);
 })
 
 //cadastrar novo livro
-app.post('/books', upload.single('image'), (request: any, response: any) => {
+app.post('/books', upload.single('image'), (request, response) => {
    const img = request.file;
-   let novoLivro: Livro = JSON.parse(request.body.novoLivro);
-   novoLivro.id = crypto.randomUUID();
-   novoLivro.image = img ? img.filename : novoLivro.image;
+   const { title, author, genre, systemEntryDate, synopsis }: Livro = JSON.parse(request.body.novoLivro);
+
+   const livro = z.object({
+      title: z.string().min(1),
+      author: z.string().min(1),
+      genre: z.string().min(1),
+      image: z.string().min(1),
+      systemEntryDate: z.string().min(1),
+      synopsis: z.string().min(1)
+   })
+   const validacao = livro.parse({
+      title: title,
+      author: author,
+      genre: genre,
+      image: img ? img.filename : '',
+      systemEntryDate: systemEntryDate,
+      synopsis: synopsis
+   })
+   let novoLivro: Livro = {
+      id: crypto.randomUUID(),
+      title: validacao.title,
+      author: validacao.author,
+      genre: validacao.genre,
+      status: { isRented: false, isActive: true, description: '' },
+      image: validacao.image,
+      systemEntryDate: validacao.systemEntryDate,
+      synopsis: validacao.synopsis,
+      rentHistory: []
+   };
 
    db.books.push(novoLivro);
    fs.writeFileSync(path.join(dirname, "./db.json"), JSON.stringify(db, null, '\t'));
@@ -89,23 +118,40 @@ app.post('/books', upload.single('image'), (request: any, response: any) => {
 })
 
 //editar livro
-app.patch('/books/:id', upload.single('image'), (request: any, response: any) => {
+app.patch('/books/:id', upload.single('image'), (request, response, next) => {
    const { id } = request.params;
    const img = request.file;
    const { title, author, genre, image, systemEntryDate, synopsis }: Livro = JSON.parse(request.body.newInfo);
-
+   const livro = db.books.find(item => item.id.toString() === id);
    const livroIndex = db.books.findIndex(item => item.id.toString() === id);
 
-   if (livroIndex < 0) {
+   if (!livro) {
       return response.status(404).json({ error: 'Livro não encontrado' })
    }
 
-   db.books[livroIndex].title = title;
-   db.books[livroIndex].author = author;
-   db.books[livroIndex].genre = genre;
+   const livroValidar = z.object({
+      title: z.string().min(1),
+      author: z.string().min(1),
+      genre: z.string().min(1),
+      image: z.string().min(1),
+      systemEntryDate: z.string().min(1),
+      synopsis: z.string().min(1)
+   })
+   const validacao = livroValidar.parse({
+      title: title,
+      author: author,
+      genre: genre,
+      image: image,
+      systemEntryDate: systemEntryDate,
+      synopsis: synopsis
+   })
+
+   db.books[livroIndex].title = validacao.title;
+   db.books[livroIndex].author = validacao.author;
+   db.books[livroIndex].genre = validacao.genre;
    db.books[livroIndex].image = img ? img.filename : image;
-   db.books[livroIndex].systemEntryDate = systemEntryDate;
-   db.books[livroIndex].synopsis = synopsis;
+   db.books[livroIndex].systemEntryDate = validacao.systemEntryDate;
+   db.books[livroIndex].synopsis = validacao.synopsis;
 
    fs.writeFileSync(path.join(dirname, "./db.json"), JSON.stringify(db, null, '\t'));
 
@@ -113,90 +159,132 @@ app.patch('/books/:id', upload.single('image'), (request: any, response: any) =>
 })
 
 //listar todos os historicos
-app.get('/emprestimos', (request: any, response: any) => {
+app.get('/emprestimos', (request, response) => {
    let historicos: RentHistory[] = [];
 
    db.books.forEach(livro => {
-      if (livro.rentHistory.length > 0) {
-         livro.rentHistory.forEach(rent => {
-            historicos.push(rent);
-         })
-      }
+      livro.rentHistory.forEach(rent => {
+         historicos.push(rent);
+      })
    })
 
-   return response.status(200).json(historicos);
+   return response.json(historicos);
 })
 
 //listar historico de um livro
-app.get('/emprestimos/:id', function (request: any, response: any) {
+app.get('/emprestimos/:id', (request, response) => {
    const { id } = request.params;
-   const livroIndex = db.books.findIndex(item => item.id.toString() === id);
+   const livro = db.books.find(item => item.id.toString() === id);
 
-   return response.status(200).json(db.books[livroIndex].rentHistory);
-})
-
-//emprestar livro
-app.patch('/biblioteca/emprestar/:id', (request: any, response: any, next: any) => {
-   const { id } = request.params;
-   const livroIndex = db.books.findIndex(item => item.id.toString() === id);
-   const novoEmprestimo: RentHistory = request.body;
-
-   if (livroIndex < 0) {
+   if (!livro) {
       return response.status(404).json({ error: 'Livro não encontrado' })
    }
 
+   return response.json(livro.rentHistory);
+})
+
+//emprestar livro
+app.patch('/biblioteca/emprestar/:id', (request, response, next) => {
+   const { id } = request.params;
+   const livro = db.books.find(item => item.id.toString() === id);
+   const livroIndex = db.books.findIndex(item => item.id.toString() === id);
+   const novoEmprestimo: RentHistory = request.body;
+
+   if (!livro) {
+      return response.status(404).json({ error: 'Livro não encontrado' })
+   }
+   if (livro.status.isRented) {
+      return response.status(400).json({ error: 'Livro já emprestado' })
+   }
+   if (livro.status.isActive === false) {
+      return response.status(400).json({ error: 'Livro inativo' })
+   }
+
+   const rentHistory = z.object({
+      studentName: z.string().min(1),
+      class: z.string().min(1),
+      withdrawalDate: z.string().min(1),
+      deliveryDate: z.string().min(1)
+   })
+   const validacao = rentHistory.parse({
+      studentName: novoEmprestimo.studentName,
+      class: novoEmprestimo.class,
+      withdrawalDate: novoEmprestimo.withdrawalDate,
+      deliveryDate: novoEmprestimo.deliveryDate
+   })
+
    db.books[livroIndex].status.isRented = true;
-   db.books[livroIndex].rentHistory.push(novoEmprestimo);
+   db.books[livroIndex].rentHistory.push({
+      studentName: validacao.studentName,
+      class: validacao.class,
+      withdrawalDate: validacao.withdrawalDate,
+      deliveryDate: validacao.deliveryDate
+   });
 
    fs.writeFileSync(path.join(dirname, "./db.json"), JSON.stringify(db, null, '\t'));
 
-   return response.status(200).json(db.books[livroIndex]);
+   return response.json(db.books[livroIndex]);
 })
 
 //devolver livro
-app.patch('/biblioteca/devolver/:id', (request: any, response: any, next: any) => {
+app.patch('/biblioteca/devolver/:id', (request, response, next) => {
    const { id } = request.params;
+   const livro = db.books.find(item => item.id.toString() === id);
    const livroIndex = db.books.findIndex(item => item.id.toString() === id);
 
-   if (livroIndex < 0) {
+   if (!livro) {
       return response.status(404).json({ error: 'Livro não encontrado' })
+   }
+   if (livro.status.isRented === false) {
+      return response.status(400).json({ error: 'Livro não está emprestado' })
    }
 
    db.books[livroIndex].status.isRented = false;
    fs.writeFileSync(path.join(dirname, "./db.json"), JSON.stringify(db, null, '\t'));
 
-   return response.status(200).json(db.books[livroIndex]);
+   return response.json(db.books[livroIndex]);
 })
 
 //desativar livro
-app.patch('/biblioteca/desativar/:id', function (request: any, response: any, next: any) {
+app.patch('/biblioteca/desativar/:id', (request, response, next) => {
    const { id } = request.params;
    const { description } = request.body;
+   const livro = db.books.find(item => item.id.toString() === id);
    const livroIndex = db.books.findIndex(item => item.id.toString() === id);
 
-   if (livroIndex < 0) {
+   if (!description) {
+      return response.status(400).json({ error: 'É necessário dar um motivo para a desativação' });
+   }
+   if (!livro) {
       return response.status(404).json({ error: 'Livro não encontrado' })
    }
 
-   if (description) {
-      db.books[livroIndex].status.isActive = false;
-      db.books[livroIndex].status.description = description;
+   const descr = z.object({
+      description: z.string().min(10)
+   })
+   const validacao = descr.parse({
+      description: description
+   })
 
-      fs.writeFileSync(path.join(dirname, "./db.json"), JSON.stringify(db, null, '\t'));
+   db.books[livroIndex].status.isActive = false;
+   db.books[livroIndex].status.description = validacao.description;
 
-      return response.status(200).json(db.books[livroIndex]);
-   } else {
-      return response.status(400).json({ error: "É necessário dar um motivo para a desativação" });
-   }
+   fs.writeFileSync(path.join(dirname, "./db.json"), JSON.stringify(db, null, '\t'));
+
+   return response.json(db.books[livroIndex]);
 })
 
 //ativar livro
-app.patch('/biblioteca/ativar/:id', function (request: any, response: any, next: any) {
+app.patch('/biblioteca/ativar/:id', (request, response, next) => {
    const { id } = request.params;
+   const livro = db.books.find(item => item.id.toString() === id);
    const livroIndex = db.books.findIndex(item => item.id.toString() === id);
 
-   if (livroIndex < 0) {
+   if (!livro) {
       return response.status(404).json({ error: 'Livro não encontrado' })
+   }
+   if (livro.status.isActive) {
+      return response.status(400).json({ error: 'Livro já está ativado' })
    }
 
    db.books[livroIndex].status.isActive = true;
@@ -204,7 +292,16 @@ app.patch('/biblioteca/ativar/:id', function (request: any, response: any, next:
 
    fs.writeFileSync(path.join(dirname, "./db.json"), JSON.stringify(db, null, '\t'));
 
-   return response.status(200).json(db.books[livroIndex]);
+   return response.json(db.books[livroIndex]);
 })
+
+app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+   if (res.headersSent) {
+      return next(err);
+   }
+   console.error(err);
+   res.status(500);
+   res.send({ message: err.message });
+});
 
 app.listen(port, () => { console.log(`Servidor executado no port ${port}`) });

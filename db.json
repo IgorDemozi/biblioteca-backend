@@ -370,6 +370,12 @@
 					"class": "562",
 					"withdrawalDate": "30/01/2023",
 					"deliveryDate": "11/02/2023"
+				},
+				{
+					"studentName": "roger",
+					"class": "t564",
+					"withdrawalDate": "12/08/2022",
+					"deliveryDate": "01/09/2022"
 				}
 			],
 			"id": "fb29991f-b592-4e4b-83fd-e6627178e963"
@@ -579,6 +585,21 @@
 				}
 			],
 			"id": 21
+		},
+		{
+			"id": "2ebb55f8-914e-4d29-9579-3ddb44378ec3",
+			"title": "cebola",
+			"author": "natureza",
+			"genre": "Culinária",
+			"status": {
+				"isRented": false,
+				"isActive": true,
+				"description": ""
+			},
+			"image": "1675445411836-cebola-1d05720a.webp",
+			"systemEntryDate": "03/02/2023",
+			"synopsis": "legume",
+			"rentHistory": []
 		}
 	]
 }

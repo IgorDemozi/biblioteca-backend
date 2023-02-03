@@ -13,7 +13,6 @@ export type Livro = {
 export type RentHistory = {
    studentName: string;
    class: string;
-   title?: string;
    withdrawalDate: string;
    deliveryDate: string
 }
